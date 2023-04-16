@@ -1,0 +1,28 @@
+You can use pandas' `cut()` method to categorize dates based on their variance. Here's an example:
+```python
+import pandas as pd
+
+df = pd.DataFrame({'build_year': ['1990', '1995', '2000', '2005', '2010']})
+df['build_year'] = pd.cut(df['build_year'].astype(int), bins=[1980, 1990, 2000, 2010])
+```
+In this example, we have a dataframe with a column named 'build_year' that has different years as nominal values. We use the `cut()` method to categorize these years into three categories based on their variance: 1980-1990, 1990-2000 and 2000-2010.
+
+I hope this helps! Let me know if you have any other questions.
+
+
+Normalization techniques are used to transform data into a common scale without distorting differences in the ranges of values. One common normalization technique is **min-max scaling**, which scales the data to a range of 0 to 1. Another technique is **z-score normalization**, which scales the data so that it has a mean of 0 and a standard deviation of 1.
+
+In your case, you can use min-max scaling or z-score normalization to normalize the years in your dataframe. Here's an example code that shows how to use min-max scaling and z-score normalization in pandas:
+```python
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+
+df = pd.DataFrame({'year': [1500, 1700, 1800, 1900, 2000, 2022]})
+scaler = MinMaxScaler()
+df['year_minmax'] = scaler.fit_transform(df[['year']])
+scaler = StandardScaler()
+df['year_zscore'] = scaler.fit_transform(df[['year']])
+print(df)
+```
+In this example, we create a DataFrame with column year and then use the `MinMaxScaler()` and `StandardScaler()` classes from scikit-learn to normalize the years in the dataframe.
